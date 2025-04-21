@@ -1,0 +1,137 @@
+// Focus ring mixin
+@mixin focus-ring {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  
+  // Visually hidden (for screen readers)
+  @mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  // Responsive breakpoints
+  $breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+  );
+  
+  @mixin media-breakpoint-up($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      @media (min-width: $breakpoint) {
+        @content;
+      }
+    }
+  }
+  
+  // Button reset
+  @mixin button-reset {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    cursor: pointer;
+  }
+  
+  // Truncate text with ellipsis
+  @mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  // Flex center
+  @mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  // Absolute centering
+  @mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  // Animation mixin
+  @mixin transition($properties: all, $duration: var(--transition-normal), $timing: var(--transition-timing-ease)) {
+    transition-property: $properties;
+    transition-duration: $duration;
+    transition-timing-function: $timing;
+  }
+  
+  // Accessible hover focus
+  @mixin hover-focus {
+    &:hover,
+    &:focus-visible {
+      @content;
+    }
+  }
+  
+  // Scrollbar styling
+  @mixin styled-scrollbar($size: 8px, $track-color: var(--color-background-secondary), $thumb-color: var(--color-border-medium)) {
+    &::-webkit-scrollbar {
+      width: $size;
+      height: $size;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: $track-color;
+      border-radius: $size / 2;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: $thumb-color;
+      border-radius: $size / 2;
+      
+      &:hover {
+        background-color: var(--color-border-dark);
+      }
+    }
+  }
+  
+  // Typography presets
+  @mixin heading-1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+  }
+  
+  @mixin heading-2 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+  }
+  
+  @mixin heading-3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-snug);
+  }
+  
+  @mixin body-text {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
+  }

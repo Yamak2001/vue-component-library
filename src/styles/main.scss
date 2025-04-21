@@ -1,0 +1,100 @@
+@import './tokens/variables';
+@import './utils/mixins';
+
+:root {
+  // Convert our token maps to CSS variables
+  
+  // Colors
+  @each $color-name, $color-variants in $colors {
+    @each $variant, $value in $color-variants {
+      --color-#{$color-name}-#{$variant}: #{$value};
+    }
+  }
+  
+  // Font sizes
+  @each $size-name, $size-value in $font-sizes {
+    --font-size-#{$size-name}: #{$size-value};
+  }
+  
+  // Font weights
+  @each $weight-name, $weight-value in $font-weights {
+    --font-weight-#{$weight-name}: #{$weight-value};
+  }
+  
+  // Line heights
+  @each $lh-name, $lh-value in $line-heights {
+    --line-height-#{$lh-name}: #{$lh-value};
+  }
+  
+  // Spacing
+  @each $space-name, $space-value in $spacing {
+    --spacing-#{$space-name}: #{$space-value};
+  }
+  
+  // Border radius
+  @each $radius-name, $radius-value in $radius {
+    --radius-#{$radius-name}: #{$radius-value};
+  }
+  
+  // Shadows
+  @each $shadow-name, $shadow-value in $shadows {
+    --shadow-#{$shadow-name}: #{$shadow-value};
+  }
+  
+  // Transitions
+  @each $trans-name, $trans-value in $transitions {
+    --transition-#{$trans-name}: #{$trans-value};
+  }
+  
+  // Transition timing
+  @each $timing-name, $timing-value in $transition-timing {
+    --transition-timing-#{$timing-name}: #{$timing-value};
+  }
+  
+  // Z-index
+  @each $z-name, $z-value in $z-index {
+    --z-index-#{$z-name}: #{$z-value};
+  }
+  
+  // Focus ring
+  --focus-ring-width: #{$focus-ring-width};
+  --focus-ring-color: #{$focus-ring-color};
+  
+  // Typography
+  --font-family-base: #{$font-family-base};
+  --font-family-heading: #{$font-family-heading};
+  --font-family-mono: #{$font-family-mono};
+}
+
+// Reset some basic elements
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Base styling for focus
+:focus-visible {
+  @include focus-ring;
+}
+
+// Set up theme transitions
+html {
+  transition: background-color 0.3s ease;
+}
+
+// Default button styling
+button {
+  @include button-reset;
+}
