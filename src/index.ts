@@ -1,75 +1,62 @@
+// src/index.ts
 // Core components
 import VButton from './components/core/VButton/VButton.vue';
-// import VInput from './components/core/VInput/VInput.vue';
-// import VIcon from './components/core/VIcon/VIcon.vue';
+import VInput from './components/core/VInput/VInput.vue';
 
 // Composite components
 import VButtonGroup from './components/composite/VButtonGroup/VButtonGroup.vue';
-// import VForm from './components/composite/VForm/VForm.vue';
+import VInputGroup from './components/composite/VInputGroup/VInputGroup.vue';
 
 // Smart components
 import VDataTable from './components/smart/VDataTable/VDataTable.vue';
-// import VSearchSelect from './components/smart/VSearchSelect/VSearchSelect.vue';
-
-// Composables
-import { useTheme } from './composables/useTheme';
-import { useI18n } from './composables/useI18n';
-
-// Types
-import type { ButtonSize, ButtonVariant } from './types/button';
-// import type { InputType } from './types/input';
-import type { ThemeOptions } from './types/theme';
+import VAutoComplete from './components/smart/VAutoComplete/VAutoComplete.vue';
 
 // Adapters
 import { createHttpAdapter } from './adapters/httpAdapter';
 import { createGraphQLAdapter } from './adapters/graphQLAdapter';
+import { createMockAdapter } from './adapters/mockAdapter';
+import { createRestDataTableAdapter, createGraphQLDataTableAdapter } from './adapters/dataTableAdapter';
+import { createRestAutoCompleteAdapter, createClientSideAutoCompleteAdapter } from './adapters/autoCompleteAdapter';
 
-// Individual component exports for tree-shaking
+// Export individual components for tree-shaking
 export {
   // Core components
   VButton,
-//   VInput,
-//   VIcon,
+  VInput,
   
   // Composite components
   VButtonGroup,
-//   VForm,
+  VInputGroup,
   
   // Smart components
   VDataTable,
-//   VSearchSelect,
-  
-  // Composables
-  useTheme,
-  useI18n,
-  
-  // Types
-  ButtonSize,
-  ButtonVariant,
-//   InputType,
-  ThemeOptions,
+  VAutoComplete,
   
   // Adapters
   createHttpAdapter,
   createGraphQLAdapter,
+  createMockAdapter,
+  createRestDataTableAdapter,
+  createGraphQLDataTableAdapter,
+  createRestAutoCompleteAdapter,
+  createClientSideAutoCompleteAdapter
 };
 
-// Plugin for global registration
+// Vue plugin
 import { App } from 'vue';
 
 export default {
   install(app: App) {
     // Register core components
     app.component('VButton', VButton);
-    // app.component('VInput', VInput);
-    // app.component('VIcon', VIcon);
+    app.component('VInput', VInput);
     
     // Register composite components
     app.component('VButtonGroup', VButtonGroup);
-    // app.component('VForm', VForm);
+    app.component('VInputGroup', VInputGroup);
     
     // Register smart components
     app.component('VDataTable', VDataTable);
-    // app.component('VSearchSelect', VSearchSelect);
+    app.component('VAutoComplete', VAutoComplete);
   }
 };
